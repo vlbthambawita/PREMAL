@@ -1,0 +1,30 @@
+title: PREMAL
+description: A curated map of papers on Privacy-Preserving Machine Learning with Fully Homomorphic Encryption.
+
+# Served as a project page at https://vlbthambawita.github.io/PREMAL/
+url: "https://vlbthambawita.github.io"
+baseurl: "/PREMAL"
+
+# No bundled theme — _layouts/default.html ships its own minimal CSS + Mermaid loader.
+# GitHub Pages plugins beyond the default allowlist will not load; keep this empty.
+plugins: []
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default
+
+exclude:
+  - papers/
+  - extraction-template.md
+  - frontpage-template.md
+  - CLAUDE.md
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - .gitignore
+  - vendor/
+
+# Pretty URLs: summaries/foo.md is served as /summaries/foo
+permalink: pretty
