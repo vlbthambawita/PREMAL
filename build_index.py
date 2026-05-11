@@ -183,7 +183,9 @@ def replace_block(text, start_marker, end_marker, replacement):
     if not pattern.search(text):
         print(f"  WARN: markers not found in index.md: {start_marker} / {end_marker}", file=sys.stderr)
         return text
-    return pattern.sub(f"{start_marker}\n\n{replacement}\n\n{end_marker}", text)
+    # count=1 so a literal marker mentioned later in prose (e.g. in "How to contribute")
+    # is not also rewritten.
+    return pattern.sub(f"{start_marker}\n\n{replacement}\n\n{end_marker}", text, count=1)
 
 
 def render_summaries_index(entries):
