@@ -1,7 +1,10 @@
 # Plan — "Slides" tab: teaching slide decks for the Transformer + FHE collection
 
 **Branch:** `feature/transformer-fhe-slides` (merge to `main` when complete)
-**Status:** awaiting approval
+**Status:** in progress — infrastructure done, 7 of 60 decks written (primer + all of Module 1).
+Live checklist: `slidev/PROGRESS.md`. Settled since this plan was written: Node installed,
+deployment via GitHub Actions (Option A, workflow committed), HETAL still planned as one merged
+deck, decks live in `slidev/src/` rather than `slidev/decks/`.
 **Goal:** add a new tab to the PREMAL site containing one Slidev deck per paper in
 `papers_Transformer_FHE/` (60 PDFs), written in very simple English with diagrams, so that a
 student with no cryptography background can learn the concept of each paper.
