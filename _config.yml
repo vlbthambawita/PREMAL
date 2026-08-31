@@ -17,6 +17,9 @@ defaults:
 
 exclude:
   - papers/
+  - papers_Transformer_FHE/
+  - slidev/
+  - SLIDES_PLAN.md
   - extraction-template.md
   - frontpage-template.md
   - CLAUDE.md

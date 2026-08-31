@@ -1,0 +1,19 @@
+{
+  "name": "premal-slides",
+  "private": true,
+  "type": "module",
+  "description": "Teaching slide decks for the PREMAL Transformer + FHE literature collection.",
+  "scripts": {
+    "dev": "slidev",
+    "build": "./build.sh",
+    "clean": "rm -rf ../decks"
+  },
+  "dependencies": {
+    "@slidev/cli": "^52.0.0",
+    "@slidev/theme-default": "^0.25.0",
+    "vue": "^3.5.0"
+  },
+  "devDependencies": {
+    "playwright-chromium": "^1.62.1"
+  }
+}

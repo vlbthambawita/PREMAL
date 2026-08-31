@@ -1,0 +1,157 @@
+/* PREMAL deck styling — shared by every deck in decks/.
+ *
+ * Colour semantics are fixed across the whole collection so students can read
+ * any diagram without a legend:
+ *
+ *   blue   = encrypted / ciphertext
+ *   grey   = plaintext
+ *   orange = the expensive operation
+ *   green  = this paper's contribution
+ *   red    = what leaks / what breaks
+ */
+
+:root {
+  --premal-ct: #0969da;
+  --premal-ct-bg: #ddf4ff;
+  --premal-pt: #656d76;
+  --premal-pt-bg: #f0f2f4;
+  --premal-cost: #bc4c00;
+  --premal-cost-bg: #fff1e5;
+  --premal-contrib: #1a7f37;
+  --premal-contrib-bg: #dafbe1;
+  --premal-leak: #cf222e;
+  --premal-leak-bg: #ffebe9;
+  --premal-border: #d0d7de;
+}
+
+html.dark {
+  --premal-ct: #58a6ff;
+  --premal-ct-bg: #0d2d4d;
+  --premal-pt: #9aa4af;
+  --premal-pt-bg: #21262d;
+  --premal-cost: #ff9d4d;
+  --premal-cost-bg: #43290d;
+  --premal-contrib: #56d364;
+  --premal-contrib-bg: #12331c;
+  --premal-leak: #ff7b72;
+  --premal-leak-bg: #3d1618;
+  --premal-border: #30363d;
+}
+
+.slidev-layout h1 {
+  color: var(--premal-ct);
+  font-weight: 700;
+}
+
+.slidev-layout h1 + p {
+  opacity: 0.85;
+  margin-top: -0.4rem;
+}
+
+/* --- inline semantic text ------------------------------------------------ */
+
+.ct   { color: var(--premal-ct);      font-weight: 600; }
+.pt   { color: var(--premal-pt);      font-weight: 600; }
+.cost { color: var(--premal-cost);    font-weight: 600; }
+.win  { color: var(--premal-contrib); font-weight: 600; }
+.leak { color: var(--premal-leak);    font-weight: 600; }
+
+/* --- callout boxes ------------------------------------------------------- */
+
+.note,
+.big-idea,
+.warn,
+.analogy {
+  border-radius: 6px;
+  padding: 0.7rem 1rem;
+  margin: 0.8rem 0;
+  font-size: 0.95em;
+  border-left: 4px solid var(--premal-border);
+  background: var(--premal-pt-bg);
+}
+
+.big-idea {
+  border-left-color: var(--premal-contrib);
+  background: var(--premal-contrib-bg);
+  font-size: 1.15em;
+  font-weight: 500;
+}
+
+.warn {
+  border-left-color: var(--premal-leak);
+  background: var(--premal-leak-bg);
+}
+
+.analogy {
+  border-left-color: var(--premal-ct);
+  background: var(--premal-ct-bg);
+}
+
+.note > p,
+.big-idea > p,
+.warn > p,
+.analogy > p { margin: 0; }
+
+.note > p + p,
+.big-idea > p + p,
+.warn > p + p,
+.analogy > p + p { margin-top: 0.5em; }
+
+.analogy::before {
+  content: "Think of it like this — ";
+  font-weight: 600;
+  color: var(--premal-ct);
+}
+
+/* --- source references --------------------------------------------------- */
+
+.src {
+  font-size: 0.72em;
+  color: var(--premal-pt);
+  font-weight: 400;
+}
+
+.slidev-layout footer.deck-src {
+  position: absolute;
+  bottom: 1rem;
+  right: 1.4rem;
+  font-size: 0.7rem;
+  color: var(--premal-pt);
+}
+
+/* --- glossary and quiz --------------------------------------------------- */
+
+.glossary {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.35rem 1rem;
+  font-size: 0.9em;
+}
+
+.glossary dt { font-weight: 600; color: var(--premal-ct); }
+.glossary dd { margin: 0; }
+
+.answer {
+  border-left: 3px solid var(--premal-contrib);
+  padding-left: 0.8rem;
+  margin: 0.3rem 0 0.9rem;
+  color: var(--premal-contrib);
+  font-size: 0.92em;
+}
+
+/* --- tables -------------------------------------------------------------- */
+
+.slidev-layout table {
+  font-size: 0.85em;
+}
+
+.slidev-layout th {
+  background: var(--premal-pt-bg);
+}
+
+/* --- mermaid ------------------------------------------------------------- */
+
+.slidev-layout .mermaid {
+  display: flex;
+  justify-content: center;
+}

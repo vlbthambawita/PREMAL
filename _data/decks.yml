@@ -1,0 +1,549 @@
+# Teaching decks for the Transformer + FHE collection.
+#
+# One record per deck; slides.md renders the tiles from this file, so nothing on
+# the /slides/ page is hand-written HTML.
+#
+#   slug     directory under /decks/ — must match slidev/src/<slug>.md
+#   module   key into the `modules` list below (drives colour + filter chips)
+#   status   done   = deck is written and built; the tile links to it
+#            todo   = planned; the tile renders greyed out and is not a link
+#   strategy a | b | c | -   the primer's three ways out:
+#            a = approximate everything (FHE-only, non-interactive)
+#            b = split the work (hybrid HE + MPC, interactive)
+#            c = redesign the model
+#            m = pure MPC baseline, no FHE
+#            - = survey, systems or infrastructure paper
+#
+# Keep `hook` to one sentence. Numbers in hooks must come from the paper.
+
+modules:
+  - key: primer
+    name: Start here
+    colour: "#1a7f37"
+  - key: surveys
+    name: Surveys & where the field stands
+    colour: "#8250df"
+  - key: fhe-native
+    name: FHE-native, non-interactive inference
+    colour: "#0969da"
+  - key: hybrid
+    name: Hybrid HE + MPC
+    colour: "#bc4c00"
+  - key: mpc
+    name: Pure MPC baselines
+    colour: "#656d76"
+  - key: training
+    name: Training & fine-tuning under encryption
+    colour: "#cf222e"
+  - key: systems
+    name: Systems & hardware acceleration
+    colour: "#0f6b6b"
+  - key: medical
+    name: Medical & federated
+    colour: "#bf3989"
+
+decks:
+  # --- Module 0 — Primer ----------------------------------------------------
+  - slug: primer-fhe-transformers
+    module: primer
+    status: done
+    title: "Why transformers are hard to encrypt"
+    authors: PREMAL
+    year: 2026
+    strategy: "-"
+    slides: 16
+    hook: >-
+      The one deck to read first: CKKS, slots, noise, depth, bootstrapping, and the four
+      operators that make a transformer hard to run under encryption.
+
+  # --- Module 1 — Surveys ---------------------------------------------------
+  - slug: survey-private-transformer-inference-2024
+    module: surveys
+    status: done
+    title: "A Survey on Private Transformer Inference"
+    authors: Li et al.
+    year: 2024
+    strategy: "-"
+    slides: 17
+    hook: The clearest taxonomy of the field — who approximates, who splits the work, and why.
+  - slug: sok-approx-he-llm-2026
+    module: surveys
+    status: done
+    title: "SoK: Private LLM Inference using Approximate Homomorphic Encryption"
+    authors: Al Badawi et al.
+    year: 2026
+    strategy: "-"
+    slides: 17
+    hook: The honest scorecard — what encrypted LLM inference can actually do today, and at what cost.
+  - slug: ppml-systematic-review-2025
+    module: surveys
+    status: done
+    title: "Towards Efficient Privacy-Preserving Machine Learning — A Systematic Review"
+    authors: Zeng et al.
+    year: 2025
+    strategy: "-"
+    slides: 17
+    hook: Reviews PPML from three angles at once — protocol, model and system.
+  - slug: pragmatic-crypto-comparison-2026
+    module: surveys
+    status: done
+    title: "A Pragmatic Comparison of Cryptographic Computation Technologies for ML"
+    authors: Taubert et al.
+    year: 2026
+    strategy: "-"
+    slides: 17
+    hook: FHE, MPC and trusted hardware measured against each other on the same tasks.
+  - slug: fhe-vs-garbled-circuits-2025
+    module: surveys
+    status: done
+    title: "Comparison of FHE and Garbled Circuit Techniques in PPML Inference"
+    authors: Cheerla et al.
+    year: 2025
+    strategy: "-"
+    slides: 17
+    hook: Two very different ways to hide a computation, put side by side.
+  - slug: shuffling-defense-insecurity-2026
+    module: surveys
+    status: done
+    title: "On the (In-)Security of the Shuffling Defense in Transformer Secure Inference"
+    authors: Li et al.
+    year: 2026
+    strategy: "-"
+    slides: 17
+    hook: A popular cheap "defence" is shown not to defend. Read it before trusting a shortcut.
+
+  # --- Module 2 — FHE-native, non-interactive -------------------------------
+  - slug: thex-2022
+    module: fhe-native
+    status: todo
+    title: "THE-X — Privacy-Preserving Transformer Inference with HE"
+    authors: Chen et al.
+    year: 2022
+    strategy: a
+    hook: The first attempt to push a whole BERT through homomorphic encryption.
+  - slug: polynomial-transformers-2023
+    module: fhe-native
+    status: todo
+    title: "Converting Transformers to Polynomial Form for Secure Inference"
+    authors: Zimerman et al.
+    year: 2023
+    strategy: a
+    hook: Replace every non-polynomial piece of a transformer, then train the network to like it.
+  - slug: power-softmax-2024
+    module: fhe-native
+    status: todo
+    title: "PowerSoftmax — Towards Secure LLM Inference over Encrypted Data"
+    authors: Zimerman et al.
+    year: 2024
+    strategy: c
+    hook: A softmax replacement designed to be cheap under encryption rather than fitted after the fact.
+  - slug: nexus-2024
+    module: fhe-native
+    status: todo
+    title: "NEXUS — Secure Transformer Inference Made Non-interactive"
+    authors: Zhang et al.
+    year: 2024
+    strategy: a
+    hook: The landmark non-interactive system — one message each way, client can go offline.
+  - slug: thor-2024
+    module: fhe-native
+    status: todo
+    title: "THOR — Secure Transformer Inference with Homomorphic Encryption"
+    authors: Moon et al.
+    year: 2024
+    strategy: a
+    hook: Careful matrix packing to cut the rotation bill of encrypted attention.
+  - slug: ellmo-2026
+    module: fhe-native
+    status: todo
+    title: "ELLMo — Packing- and Depth-Aware Encrypted Transformer Inference"
+    authors: Guzelhan et al.
+    year: 2026
+    strategy: a
+    hook: Treats packing layout and depth budget as one joint problem instead of two.
+  - slug: euston-2026
+    module: fhe-native
+    status: todo
+    title: "Euston — Efficient and User-Friendly Secure Transformer Inference"
+    authors: Gao et al.
+    year: 2026
+    strategy: a
+    hook: Non-interactive inference with the client's setup burden deliberately kept small.
+  - slug: stip-2026
+    module: fhe-native
+    status: todo
+    title: "STIP — Non-Interactive Transformer Inference via Compact Packing"
+    authors: Wang et al.
+    year: 2026
+    strategy: a
+    hook: Compact packing that fits more of the model into each ciphertext.
+  - slug: atlas-2026
+    module: fhe-native
+    status: todo
+    title: "ATLAS — Automated Approximation of Transformers"
+    authors: Xie et al.
+    year: 2026
+    strategy: a
+    hook: Stops hand-tuning polynomial approximations and searches for them automatically.
+  - slug: private-llm-inference-edbt-2026
+    module: fhe-native
+    status: todo
+    title: "Private LLM Inference with Homomorphic Encryption (tutorial)"
+    authors: Lim et al.
+    year: 2026
+    strategy: "-"
+    hook: A tutorial walk-through of the whole pipeline — a gentle second stop after the primer.
+  - slug: fhe-llama3-2026
+    module: fhe-native
+    status: todo
+    title: "Fully Homomorphic Encryption on Llama 3"
+    authors: Abdennebi et al.
+    year: 2026
+    strategy: a
+    hook: What happens when you point encrypted inference at a modern open LLM.
+  - slug: secure-transformer-protocol-2023
+    module: fhe-native
+    status: todo
+    title: "Secure Transformer Inference Protocol"
+    authors: Yuan et al.
+    year: 2023
+    strategy: a
+    hook: A protocol-level view of who holds what, before any optimisation.
+
+  # --- Module 3 — Hybrid HE + MPC -------------------------------------------
+  - slug: iron-2022
+    module: hybrid
+    status: todo
+    title: "Iron — Private Inference on Transformers"
+    authors: Hao et al.
+    year: 2022
+    strategy: b
+    hook: The paper that opened two-party private transformer inference.
+  - slug: bolt-2023
+    module: hybrid
+    status: todo
+    title: "BOLT — Privacy-Preserving, Accurate and Efficient Inference"
+    authors: Pang et al.
+    year: 2023
+    strategy: b
+    hook: The hybrid baseline everyone else compares against — and the source of the famous round count.
+  - slug: bumblebee-2023
+    module: hybrid
+    status: todo
+    title: "BumbleBee — Secure Two-party Inference for Large Transformers"
+    authors: Lu et al.
+    year: 2023
+    strategy: b
+    hook: Squeezes the communication cost of the hybrid approach hard.
+  - slug: nimbus-2024
+    module: hybrid
+    status: todo
+    title: "Nimbus — Secure and Efficient Two-Party Inference for Transformers"
+    authors: Li et al.
+    year: 2024
+    strategy: b
+    hook: Moves work into an offline phase so the online phase is short.
+  - slug: ciphergpt-2023
+    module: hybrid
+    status: todo
+    title: "CipherGPT — Secure Two-Party GPT Inference"
+    authors: Hou et al.
+    year: 2023
+    strategy: b
+    hook: The first serious attempt at generative, token-by-token private inference.
+  - slug: cipherformer-2024
+    module: hybrid
+    status: todo
+    title: "CipherFormer — Private Inference with Low Round Complexity"
+    authors: Wang & Kuang
+    year: 2024
+    strategy: b
+    hook: Attacks the round count directly — the thing that makes hybrids painful over a real network.
+  - slug: east-2023
+    module: hybrid
+    status: todo
+    title: "East — Efficient and Accurate Secure Transformer Framework"
+    authors: Ding et al.
+    year: 2023
+    strategy: b
+    hook: Protocol-level care for the non-linear functions, without giving up accuracy.
+  - slug: primer-2023
+    module: hybrid
+    status: todo
+    title: "Primer — Fast Private Transformer Inference on Encrypted Data"
+    authors: Zheng et al.
+    year: 2023
+    strategy: b
+    hook: Combines several cryptographic tools rather than betting on one.
+  - slug: blb-2025
+    module: hybrid
+    status: todo
+    title: "BLB — Breaking the Layer Barrier"
+    authors: Xu et al.
+    year: 2025
+    strategy: b
+    hook: Stops treating the transformer layer as an atom and re-cuts the HE/MPC boundary inside it.
+  - slug: encformer-2026
+    module: hybrid
+    status: todo
+    title: "EncFormer — Secure and Efficient Transformer Inference"
+    authors: Zhu et al.
+    year: 2026
+    strategy: b
+    hook: Chooses where to put each operation by what packing the next one needs.
+  - slug: ensi-2025
+    module: hybrid
+    status: todo
+    title: "ENSI — Efficient Non-Interactive Secure Inference for LLMs"
+    authors: He et al.
+    year: 2025
+    strategy: a
+    hook: Pushes a hybrid-style design towards a single round.
+  - slug: cipherprune-2025
+    module: hybrid
+    status: todo
+    title: "CipherPrune — Efficient and Scalable Private Transformer Inference"
+    authors: Zhang et al.
+    year: 2025
+    strategy: b
+    hook: Drops tokens that do not matter — the cheapest ciphertext is the one you never compute.
+  - slug: comet-2025
+    module: hybrid
+    status: todo
+    title: "Comet — Private Inference by Predicting Activation Sparsity"
+    authors: Yan et al.
+    year: 2025
+    strategy: b
+    hook: Predicts which activations will be zero and skips them. Fast — and a leak worth studying.
+  - slug: key-switching-overhead-2026
+    module: hybrid
+    status: todo
+    title: "Reducing Key-Switching Overhead in Two-Party Transformer Inference"
+    authors: Yang et al.
+    year: 2026
+    strategy: b
+    hook: A close look at one specific expensive primitive that shows up everywhere.
+  - slug: encrypted-prompt-2023
+    module: hybrid
+    status: todo
+    title: "LLMs Can Understand Encrypted Prompt"
+    authors: Liu & Liu
+    year: 2023
+    strategy: b
+    hook: Reshapes the model to be privacy-computing friendly rather than only the protocol.
+  - slug: high-accuracy-ppl-acl-2025
+    module: hybrid
+    status: todo
+    title: "Powerformer — High-Accuracy Privacy-Preserving Language Modeling"
+    authors: Park et al.
+    year: 2025
+    strategy: a
+    hook: Chases accuracy rather than speed — what does encryption cost in quality?
+
+  # --- Module 4 — Pure MPC baselines ----------------------------------------
+  - slug: mpcformer-2023
+    module: mpc
+    status: todo
+    title: "MPCFormer — Fast, Performant and Private Transformer Inference"
+    authors: Li et al.
+    year: 2023
+    strategy: m
+    hook: Distils the model into an MPC-friendly one. No FHE at all — useful contrast.
+  - slug: puma-2023
+    module: mpc
+    status: todo
+    title: "PUMA — Secure Inference of LLaMA-7B in Five Minutes"
+    authors: Dong et al.
+    year: 2023
+    strategy: m
+    hook: Three-party MPC at LLaMA scale — the speed FHE is measured against.
+  - slug: secformer-2024
+    module: mpc
+    status: todo
+    title: "SecFormer — Fast and Accurate Private Inference via SMPC"
+    authors: Luo et al.
+    year: 2024
+    strategy: m
+    hook: Keeps accuracy while replacing the awkward non-linear functions.
+  - slug: shaft-2025
+    module: mpc
+    status: todo
+    title: "SHAFT — Secure, Handy, Accurate and Fast Transformer Inference"
+    authors: Kei & Chow
+    year: 2025
+    strategy: m
+    hook: Careful protocol engineering for softmax and GELU under secret sharing.
+  - slug: sigma-2023
+    module: mpc
+    status: todo
+    title: "Sigma — Secure GPT Inference with Function Secret Sharing"
+    authors: Gupta et al.
+    year: 2023
+    strategy: m
+    hook: A different cryptographic tool entirely — function secret sharing, with GPU support.
+
+  # --- Module 5 — Training & fine-tuning ------------------------------------
+  - slug: hetal-2023
+    module: training
+    status: todo
+    title: "HETAL — Privacy-preserving Transfer Learning with HE"
+    authors: Lee et al.
+    year: 2023
+    strategy: a
+    hook: Encrypted fine-tuning that actually converges — the ICML paper and its extended version together.
+  - slug: blindtuner-2024
+    module: training
+    status: todo
+    title: "BlindTuner — Encrypted Fine-tuning of Transformers"
+    authors: Panzade et al.
+    year: 2024
+    strategy: a
+    hook: Fine-tunes a vision transformer while the training data stays encrypted.
+  - slug: privtuner-2024
+    module: training
+    status: todo
+    title: "PrivTuner — Homomorphic Encryption with LoRA"
+    authors: Li et al.
+    year: 2024
+    strategy: a
+    hook: Only the small LoRA adapters are trained, so only a little has to be encrypted.
+  - slug: encryption-friendly-llm-2024
+    module: training
+    status: todo
+    title: "Encryption-Friendly LLM Architecture"
+    authors: Rho et al.
+    year: 2024
+    strategy: c
+    hook: Changes the architecture itself so the hard operators are never there to approximate.
+  - slug: inhibitor-2023
+    module: training
+    status: todo
+    title: "The Inhibitor — ReLU and Addition-Based Attention under TFHE"
+    authors: Brännvall & Stoian
+    year: 2023
+    strategy: c
+    hook: Attention rebuilt out of additions and ReLU, for a scheme that hates multiplication.
+
+  # --- Module 6 — Systems & hardware ----------------------------------------
+  - slug: encryptedllm-2025
+    module: systems
+    status: todo
+    title: "EncryptedLLM — LLM Inference via GPU-Accelerated FHE"
+    authors: de Castro et al.
+    year: 2025
+    strategy: "-"
+    hook: The same algorithms, but on a GPU — where most of the recent speed came from.
+  - slug: cachemir-2026
+    module: systems
+    status: todo
+    title: "Cachemir — FHE Inference of Generative LLMs with KV Cache"
+    authors: Yu et al.
+    year: 2026
+    strategy: "-"
+    hook: Generation needs a KV cache. Keeping that cache encrypted is its own problem.
+  - slug: cryptogen-2026
+    module: systems
+    status: todo
+    title: "CryptoGen — Secure Generation with Encrypted KV-Cache Reuse"
+    authors: Zhang et al.
+    year: 2026
+    strategy: "-"
+    hook: Reuses encrypted cache entries across tokens instead of recomputing them.
+  - slug: aegis-2026
+    module: systems
+    status: todo
+    title: "AEGIS — Long-Sequence HE Transformer Inference on Multi-GPU"
+    authors: Gong & Ran
+    year: 2026
+    strategy: "-"
+    hook: Long inputs break the memory budget; this splits the work across GPUs.
+  - slug: fame-2025
+    module: systems
+    status: todo
+    title: "FAME — FPGA Acceleration of Secure Matrix Multiplication"
+    authors: Xu et al.
+    year: 2025
+    strategy: "-"
+    hook: Custom hardware for the one operation encrypted transformers spend most of their time in.
+  - slug: chameleon-2024
+    module: systems
+    status: todo
+    title: "Chameleon — FHE Scheme Switching Acceleration on GPUs"
+    authors: Wang et al.
+    year: 2024
+    strategy: "-"
+    hook: Different schemes are good at different things — switching between them costs, and this cuts the cost.
+  - slug: multi-gpu-encrypted-2025
+    module: systems
+    status: todo
+    title: "A Scalable Multi-GPU Framework for Encrypted Large-Model Inference"
+    authors: Jayashankar et al.
+    year: 2025
+    strategy: "-"
+    hook: What it takes to scale encrypted inference past one accelerator.
+  - slug: gpu-he-dataflow-2026
+    module: systems
+    status: todo
+    title: "Dataflow-Oriented Classification of GPU-Accelerated HE"
+    authors: Nozaki et al.
+    year: 2026
+    strategy: "-"
+    hook: Explains why some GPU HE libraries are fast and others are not.
+
+  # --- Module 7 — Medical & federated ---------------------------------------
+  - slug: medblindtuner-2024
+    module: medical
+    status: todo
+    title: "MedBlindTuner — Fine-tuning on Biomedical Images with FHE"
+    authors: Panzade et al.
+    year: 2024
+    strategy: a
+    hook: Encrypted fine-tuning on medical images — the closest paper to what PREMAL is for.
+  - slug: federated-vit-medical-2025
+    module: medical
+    status: todo
+    title: "Privacy-Preserving Federated Vision Transformer in Medical AI"
+    authors: Amin et al.
+    year: 2025
+    strategy: "-"
+    hook: Hospitals train together without sharing patient data, using lightweight HE.
+  - slug: fedshield-llm-2025
+    module: medical
+    status: todo
+    title: "FedShield-LLM — Secure Federated Fine-Tuning of an LLM"
+    authors: Mia & Amini
+    year: 2025
+    strategy: "-"
+    hook: Federated fine-tuning where the updates themselves stay encrypted.
+  - slug: dictpfl-2025
+    module: medical
+    status: todo
+    title: "DictPFL — Private Federated Learning on Encrypted Gradients"
+    authors: Xue et al.
+    year: 2025
+    strategy: "-"
+    hook: Encrypting every gradient is too slow — this encrypts a compact dictionary instead.
+  - slug: secure-aggregation-mphe-2025
+    module: medical
+    status: todo
+    title: "Secure Aggregation using Multiparty Homomorphic Encryption"
+    authors: Hosseini et al.
+    year: 2025
+    strategy: "-"
+    hook: Nobody holds the whole secret key — the key idea behind federated HE.
+  - slug: hybrid-he-fl-2026
+    module: medical
+    status: todo
+    title: "Towards Privacy-Preserving Federated Learning using Hybrid HE"
+    authors: Costa et al.
+    year: 2026
+    strategy: "-"
+    hook: Symmetric encryption on the client, homomorphic work on the server.
+  - slug: disposable-key-vit-2024
+    module: medical
+    status: todo
+    title: "Disposable-key-based Image Encryption for Vision Transformer"
+    authors: Aso et al.
+    year: 2024
+    strategy: "-"
+    hook: Not FHE at all — a cheaper, weaker alternative worth understanding to see what FHE buys.
