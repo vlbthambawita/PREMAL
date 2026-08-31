@@ -26,6 +26,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      # Jekyll first, and with decks/ excluded (see _config.yml). Jekyll drops
+      # any file whose name starts with an underscore, which silently deletes
+      # the _plugin-vue_export-helper-<hash>.js chunk every Slidev deck imports
+      # and leaves a blank page. So the decks are written into _site/ afterwards
+      # instead of being copied through Jekyll.
+      - name: Build Jekyll site
+        run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -36,19 +51,24 @@ jobs:
         working-directory: slidev
         run: npm ci
 
-      - name: Build all Slidev decks
+      - name: Build all Slidev decks into the site
         working-directory: slidev
+        env:
+          OUT_ROOT: ${{ github.workspace }}/_site/decks
         run: ./build.sh
 
-      - uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.3'
-          bundler-cache: true
-
-      - name: Build Jekyll site
-        run: bundle exec jekyll build
-        env:
-          JEKYLL_ENV: production
+      - name: Verify no deck asset was lost
+        run: |
+          missing=0
+          for deck in _site/decks/*/; do
+            slug="$(basename "$deck")"
+            # Every chunk the shell imports must exist on disk.
+            while read -r asset; do
+              [ -f "_site/decks/$slug/$asset" ] || { echo "missing: $slug/$asset"; missing=1; }
+            done < <(grep -o "assets/[A-Za-z0-9_./-]*\.\(js\|css\)" "$deck/index.html" | sort -u)
+          done
+          [ "$missing" -eq 0 ] || { echo "::error::deck assets missing from _site"; exit 1; }
+          echo "all deck assets present"
 
       - uses: actions/configure-pages@v5
 

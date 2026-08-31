@@ -24,6 +24,11 @@ defaults:
 
 exclude:
   - papers/
+  # Slidev's built output. Jekyll must not touch it: it drops files whose names
+  # start with an underscore, and Vite names a required chunk
+  # _plugin-vue_export-helper-<hash>.js. CI builds the decks directly into
+  # _site/decks/ after Jekyll has run (see .github/workflows/pages.yml).
+  - decks/
   - papers_Transformer_FHE/
   - slidev/
   - SLIDES_PLAN.md

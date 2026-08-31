@@ -8,13 +8,20 @@
 #   ./build.sh nexus-2024 ...  build only the named slugs
 #
 # BASE_PREFIX overrides the deployment prefix (set it to "/" for a root-served
-# preview).
+# preview). OUT_ROOT overrides where the built decks land; CI points it straight
+# at _site/decks so the SPA output never passes through Jekyll, which silently
+# drops the chunks Vite names with a leading underscore.
 set -euo pipefail
 
 cd "$(dirname "$0")"
 
 BASE_PREFIX="${BASE_PREFIX:-/PREMAL}"
-OUT_ROOT="$(cd .. && pwd)/decks"
+if [ -n "${OUT_ROOT:-}" ]; then
+  mkdir -p "$OUT_ROOT"
+  OUT_ROOT="$(cd "$OUT_ROOT" && pwd)"
+else
+  OUT_ROOT="$(cd .. && pwd)/decks"
+fi
 
 if [ "$#" -gt 0 ]; then
   slugs=("$@")

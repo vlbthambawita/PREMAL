@@ -121,7 +121,17 @@ npx slidev src/nexus-2024.md      # live preview while authoring
 ./build.sh nexus-2024             # build one
 node check.mjs                    # overflow-check every built deck
 BASE_PREFIX=/ ./build.sh          # root-served preview instead of /PREMAL/
-
-# site: the github-pages gem is not installed locally, jekyll 4 is
-JEKYLL_NO_BUNDLER_REQUIRE=true BUNDLE_GEMFILE=/dev/null jekyll build
 ```
+
+Full site, the way CI builds it — Jekyll first, then the decks written straight into `_site/`:
+
+```sh
+JEKYLL_ENV=production JEKYLL_NO_BUNDLER_REQUIRE=true BUNDLE_GEMFILE=/dev/null jekyll build
+OUT_ROOT="$PWD/_site/decks" ./slidev/build.sh
+```
+
+**Never let Jekyll copy the decks.** It silently drops files whose names begin with an underscore,
+and every Slidev deck imports a chunk Vite names `_plugin-vue_export-helper-<hash>.js`. The result
+is a blank page with a single 404 in the console. `decks/` is therefore in Jekyll's `exclude:`
+list, the decks are written into `_site/` after Jekyll runs, and the workflow asserts afterwards
+that every asset each deck's `index.html` references is actually present.
