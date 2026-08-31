@@ -5,6 +5,13 @@ description: A curated map of papers on Privacy-Preserving Machine Learning with
 url: "https://vlbthambawita.github.io"
 baseurl: "/PREMAL"
 
+# jekyll-github-metadata (bundled with the github-pages gem) populates
+# site.github, which _layouts/default.html uses for the GitHub nav link. When
+# Jekyll runs inside GitHub Actions rather than on Pages' own builder, the
+# plugin cannot infer the repository from the checkout and aborts the build, so
+# name it explicitly.
+repository: vlbthambawita/PREMAL
+
 # No bundled theme — _layouts/default.html ships its own minimal CSS + Mermaid loader.
 # GitHub Pages plugins beyond the default allowlist will not load; keep this empty.
 plugins: []
