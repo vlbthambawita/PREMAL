@@ -1,4 +1,6 @@
 papers/
+papers_Transformer_FHE/
+papers_Transformer_FHE/
 
 # Jekyll build artifacts
 _site/
