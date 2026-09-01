@@ -1,6 +1,6 @@
 # Deck progress
 
-**8 of 61 decks written.**
+**20 of 61 decks written.**
 
 `_data/decks.yml` is the source of truth for what the `/slides/` page shows. When a deck is
 finished: `python3 slidev/mark-done.py <slug> <slides>` then `python3 slidev/progress.py`.
@@ -43,20 +43,20 @@ Primer → surveys → FHE-native → hybrid → training → medical → system
 - [x] `fhe-vs-garbled-circuits-2025` — Comparison of FHE and Garbled Circuit Techniques in PPML Inference (Cheerla et al., 2025) · 16 slides
 - [x] `shuffling-defense-insecurity-2026` — On the (In-)Security of the Shuffling Defense in Transformer Secure Inference (Li et al., 2026) · 16 slides
 
-### FHE-native, non-interactive inference — 0/12
+### FHE-native, non-interactive inference — 12/12
 
-- [ ] `thex-2022` — THE-X — Privacy-Preserving Transformer Inference with HE (Chen et al., 2022)
-- [ ] `polynomial-transformers-2023` — Converting Transformers to Polynomial Form for Secure Inference (Zimerman et al., 2023)
-- [ ] `power-softmax-2024` — PowerSoftmax — Towards Secure LLM Inference over Encrypted Data (Zimerman et al., 2024)
-- [ ] `nexus-2024` — NEXUS — Secure Transformer Inference Made Non-interactive (Zhang et al., 2024)
-- [ ] `thor-2024` — THOR — Secure Transformer Inference with Homomorphic Encryption (Moon et al., 2024)
-- [ ] `ellmo-2026` — ELLMo — Packing- and Depth-Aware Encrypted Transformer Inference (Guzelhan et al., 2026)
-- [ ] `euston-2026` — Euston — Efficient and User-Friendly Secure Transformer Inference (Gao et al., 2026)
-- [ ] `stip-2026` — STIP — Non-Interactive Transformer Inference via Compact Packing (Wang et al., 2026)
-- [ ] `atlas-2026` — ATLAS — Automated Approximation of Transformers (Xie et al., 2026)
-- [ ] `private-llm-inference-edbt-2026` — Private LLM Inference with Homomorphic Encryption (tutorial) (Lim et al., 2026)
-- [ ] `fhe-llama3-2026` — Fully Homomorphic Encryption on Llama 3 (Abdennebi et al., 2026)
-- [ ] `secure-transformer-protocol-2023` — Secure Transformer Inference Protocol (Yuan et al., 2023)
+- [x] `thex-2022` — THE-X — Privacy-Preserving Transformer Inference with HE (Chen et al., 2022) · 18 slides
+- [x] `polynomial-transformers-2023` — Converting Transformers to Polynomial Form for Secure Inference (Zimerman et al., 2023) · 20 slides
+- [x] `power-softmax-2024` — PowerSoftmax — Towards Secure LLM Inference over Encrypted Data (Zimerman et al., 2024) · 20 slides
+- [x] `nexus-2024` — NEXUS — Secure Transformer Inference Made Non-interactive (Zhang et al., 2024) · 21 slides
+- [x] `thor-2024` — THOR — Secure Transformer Inference with Homomorphic Encryption (Moon et al., 2024) · 20 slides
+- [x] `ellmo-2026` — ELLMo — Packing- and Depth-Aware Encrypted Transformer Inference (Guzelhan et al., 2026) · 19 slides
+- [x] `euston-2026` — Euston — Efficient and User-Friendly Secure Transformer Inference (Gao et al., 2026) · 18 slides
+- [x] `stip-2026` — STIP — Non-Interactive Transformer Inference via Compact Packing (Wang et al., 2026) · 19 slides
+- [x] `atlas-2026` — ATLAS — Automated Approximation of Transformers (Xie et al., 2026) · 19 slides
+- [x] `private-llm-inference-edbt-2026` — Private LLM Inference with Homomorphic Encryption (tutorial) (Lim et al., 2026) · 18 slides
+- [x] `fhe-llama3-2026` — Fully Homomorphic Encryption on Llama 3 (Abdennebi et al., 2026) · 17 slides
+- [x] `secure-transformer-protocol-2023` — Secure Transformer Inference Protocol (Yuan et al., 2023) · 18 slides
 
 ### Hybrid HE + MPC — 0/16
 

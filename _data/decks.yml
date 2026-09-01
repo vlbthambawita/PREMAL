@@ -129,100 +129,116 @@ decks:
   # --- Module 2 — FHE-native, non-interactive -------------------------------
   - slug: thex-2022
     module: fhe-native
-    status: todo
+    status: done
     title: "THE-X — Privacy-Preserving Transformer Inference with HE"
     authors: Chen et al.
     year: 2022
     strategy: a
+    slides: 18
     hook: The first attempt to push a whole BERT through homomorphic encryption.
   - slug: polynomial-transformers-2023
     module: fhe-native
-    status: todo
+    status: done
     title: "Converting Transformers to Polynomial Form for Secure Inference"
     authors: Zimerman et al.
     year: 2023
     strategy: a
+    slides: 20
     hook: Replace every non-polynomial piece of a transformer, then train the network to like it.
   - slug: power-softmax-2024
     module: fhe-native
-    status: todo
+    status: done
     title: "PowerSoftmax — Towards Secure LLM Inference over Encrypted Data"
     authors: Zimerman et al.
     year: 2024
     strategy: c
+    slides: 20
     hook: A softmax replacement designed to be cheap under encryption rather than fitted after the fact.
   - slug: nexus-2024
     module: fhe-native
-    status: todo
+    status: done
     title: "NEXUS — Secure Transformer Inference Made Non-interactive"
     authors: Zhang et al.
     year: 2024
     strategy: a
+    slides: 21
     hook: The landmark non-interactive system — one message each way, client can go offline.
   - slug: thor-2024
     module: fhe-native
-    status: todo
+    status: done
     title: "THOR — Secure Transformer Inference with Homomorphic Encryption"
     authors: Moon et al.
     year: 2024
     strategy: a
+    slides: 20
     hook: Careful matrix packing to cut the rotation bill of encrypted attention.
   - slug: ellmo-2026
     module: fhe-native
-    status: todo
+    status: done
     title: "ELLMo — Packing- and Depth-Aware Encrypted Transformer Inference"
     authors: Guzelhan et al.
     year: 2026
     strategy: a
+    slides: 19
     hook: Treats packing layout and depth budget as one joint problem instead of two.
   - slug: euston-2026
     module: fhe-native
-    status: todo
+    status: done
     title: "Euston — Efficient and User-Friendly Secure Transformer Inference"
     authors: Gao et al.
     year: 2026
     strategy: a
+    slides: 18
     hook: Non-interactive inference with the client's setup burden deliberately kept small.
   - slug: stip-2026
     module: fhe-native
-    status: todo
+    status: done
     title: "STIP — Non-Interactive Transformer Inference via Compact Packing"
     authors: Wang et al.
     year: 2026
     strategy: a
+    slides: 19
     hook: Compact packing that fits more of the model into each ciphertext.
   - slug: atlas-2026
     module: fhe-native
-    status: todo
+    status: done
     title: "ATLAS — Automated Approximation of Transformers"
     authors: Xie et al.
     year: 2026
     strategy: a
+    slides: 19
     hook: Stops hand-tuning polynomial approximations and searches for them automatically.
   - slug: private-llm-inference-edbt-2026
     module: fhe-native
-    status: todo
+    status: done
     title: "Private LLM Inference with Homomorphic Encryption (tutorial)"
     authors: Lim et al.
     year: 2026
     strategy: "-"
+    slides: 18
     hook: A tutorial walk-through of the whole pipeline — a gentle second stop after the primer.
   - slug: fhe-llama3-2026
     module: fhe-native
-    status: todo
+    status: done
     title: "Fully Homomorphic Encryption on Llama 3"
     authors: Abdennebi et al.
     year: 2026
     strategy: a
+    slides: 17
     hook: What happens when you point encrypted inference at a modern open LLM.
+  # Filed here as the module's counterpoint: it uses no homomorphic encryption at
+  # all, so strategy is "-" rather than "a".
   - slug: secure-transformer-protocol-2023
     module: fhe-native
-    status: todo
+    status: done
     title: "Secure Transformer Inference Protocol"
     authors: Yuan et al.
     year: 2023
-    strategy: a
-    hook: A protocol-level view of who holds what, before any optimisation.
+    strategy: "-"
+    slides: 18
+    hook: >-
+      A protocol-level view of who holds what — and what you get for a permutation instead of
+      a cipher.
 
   # --- Module 3 — Hybrid HE + MPC -------------------------------------------
   - slug: iron-2022
