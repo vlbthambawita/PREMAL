@@ -42,6 +42,9 @@ modules:
   - key: medical
     name: Medical & federated
     colour: "#bf3989"
+  - key: beyond
+    name: Beyond transformers
+    colour: "#6e5494"
 
 decks:
   # --- Module 0 — Primer ----------------------------------------------------
@@ -577,3 +580,18 @@ decks:
     year: 2024
     strategy: "-"
     hook: Not FHE at all — a cheaper, weaker alternative worth understanding to see what FHE buys.
+
+  # --- Module 8 — Beyond transformers ---------------------------------------
+  # Not a transformer paper. A different model class, plus original analysis of
+  # whether FHE fits it. Slides 14+ are PREMAL's own work, not published results.
+  - slug: tsetlin-machine-fhe
+    module: beyond
+    status: done
+    title: "Tsetlin Machines, and whether FHE fits them"
+    authors: Granmo et al. · analysis by PREMAL
+    year: 2026
+    strategy: "-"
+    slides: 30
+    hook: >-
+      A model made of AND-rules over bits: none of the four hard operators exist, so the
+      encrypted cost is table lookups. Includes our own cost analysis — nobody has built one.

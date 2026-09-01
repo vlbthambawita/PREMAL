@@ -1,6 +1,6 @@
 # Deck progress
 
-**20 of 61 decks written.**
+**21 of 62 decks written.**
 
 `_data/decks.yml` is the source of truth for what the `/slides/` page shows. When a deck is
 finished: `python3 slidev/mark-done.py <slug> <slides>` then `python3 slidev/progress.py`.
@@ -16,7 +16,7 @@ finished: `python3 slidev/mark-done.py <slug> <slides>` then `python3 slidev/pro
 - [x] `build.sh` — per-deck `--base` so decks work under `/PREMAL/`
 - [x] `check.mjs` — headless overflow check of every slide of every deck
 - [x] `.github/workflows/pages.yml` — builds decks + Jekyll, deploys to Pages
-- [x] `_data/decks.yml` — 61 records, drives the tile page
+- [x] `_data/decks.yml` — 62 records, drives the tile page
 - [x] `slides.md` — `/slides/` tile page with search and filter chips
 - [x] "Slides" link in the site nav
 
@@ -113,6 +113,10 @@ Primer → surveys → FHE-native → hybrid → training → medical → system
 - [ ] `secformer-2024` — SecFormer — Fast and Accurate Private Inference via SMPC (Luo et al., 2024)
 - [ ] `shaft-2025` — SHAFT — Secure, Handy, Accurate and Fast Transformer Inference (Kei & Chow, 2025)
 - [ ] `sigma-2023` — Sigma — Secure GPT Inference with Function Secret Sharing (Gupta et al., 2023)
+
+### Beyond transformers — 1/1
+
+- [x] `tsetlin-machine-fhe` — Tsetlin Machines, and whether FHE fits them (Granmo et al. · analysis by PREMAL, 2026) · 30 slides
 
 ## Local commands
 

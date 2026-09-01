@@ -13,7 +13,8 @@ import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 # Authoring order: surveys early so the lineage slide in later decks has a map.
-ORDER = ['primer', 'surveys', 'fhe-native', 'hybrid', 'training', 'medical', 'systems', 'mpc']
+ORDER = ['primer', 'surveys', 'fhe-native', 'hybrid', 'training', 'medical', 'systems', 'mpc',
+         'beyond']
 
 data = yaml.safe_load((ROOT / '_data' / 'decks.yml').read_text())
 mods = {m['key']: m['name'] for m in data['modules']}
