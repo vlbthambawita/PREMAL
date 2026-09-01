@@ -32,6 +32,7 @@ exclude:
   - papers_Transformer_FHE/
   - slidev/
   - SLIDES_PLAN.md
+  - TEACHING_GUIDE.md
   - extraction-template.md
   - frontpage-template.md
   - CLAUDE.md

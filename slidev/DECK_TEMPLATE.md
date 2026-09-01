@@ -1,7 +1,12 @@
 # Deck template and style guide
 
 Every deck in `src/` follows this skeleton. Read `src/primer-fhe-transformers.md` for a
-complete worked example — it is the reference implementation, not just a sample.
+complete worked example — it is the reference implementation, not just a sample. For the
+interactive, hands-on variant see `src/fhe-by-hand.md`.
+
+This file is the PREMAL-specific instance of a general method. `../TEACHING_GUIDE.md` holds the
+reasoning behind it — how to structure an explanation, design a visual, build an interactive that
+teaches, and check the result. Read that once; use this one every time.
 
 **Audience:** a student who knows a little machine learning and *no cryptography*. They have seen a
 transformer diagram once. They have never heard of CKKS, ciphertext slots, or multiplicative depth.
