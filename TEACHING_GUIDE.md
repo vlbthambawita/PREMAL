@@ -44,9 +44,100 @@ Write the answers down. They govern every later decision.
 **The one rule that enforces all three:** if a sentence would not survive being read aloud to that
 specific student, rewrite it.
 
+There is a fourth question — *what kind of material is this?* — and because it changes the shape of
+everything downstream, it gets its own section next.
+
 ---
 
-## 3. The shape of a deck
+## 3. First, decide what kind of thing you are teaching
+
+The same idea is taught differently depending on **how settled it is**. Decide this before you
+sketch the arc, because it changes what the student's real question is, what earns their trust, and
+which slides you are not allowed to cut.
+
+### 3.1 The four kinds
+
+| Kind | What it is | The student's real question | What earns their trust |
+|---|---|---|---|
+| **Settled mechanism** | How something works, agreed by everyone. TCP, backpropagation, how CKKS encrypts. | *How does it work?* | A worked example they can check by hand |
+| **A single paper's claim** | One group's system or result. Usually recent, usually contested or untested. | *Is this true, and what is actually new?* | Evidence, scope, and honest limits |
+| **A field** | A body of papers that disagree. A survey, a literature map, "the state of X". | *How do I navigate this?* | A taxonomy that survives contact with the papers |
+| **A practice** | How to do something well. Craft, not knowledge. | *How do I do it?* | Worked cases and named failure modes |
+
+### 3.2 How to tell which you have
+
+The test is **independent corroboration, not age**.
+
+- Would three experts, asked separately, state it the same way? → settled mechanism.
+- Does it appear in textbooks or in multiple independent implementations? → settled mechanism.
+- Is the evidence one group's experiments, on their own hardware, with no independent replication?
+  → a claim, however famous the venue and however recent or old.
+
+A five-year-old paper with a thousand citations and no reproduction is still a claim. A two-year-old
+technique reimplemented by four independent groups is closer to settled. Prestige is not evidence.
+
+### 3.3 What changes
+
+| | Settled mechanism | A paper's claim | A field |
+|---|---|---|---|
+| **The big-idea slide** says | *how it works* | **the delta** — what is new here, with the inherited machinery named and set aside | **the axis of disagreement** — what the papers actually differ about |
+| **Sourcing** | none needed for the mechanism; cite the scope conditions | every number carries a section or table reference | every comparison carries the conditions it was measured under |
+| **Cannot be cut** | the worked example | *what it costs* and *what it does not solve* | the warning that the numbers are not comparable |
+| **Structure that works** | invent → break → fix (§5.2) | problem → delta → mechanism → evidence → limits | one organising question, answered by every paper in turn |
+| **Biggest trap** | staying abstract | teaching the paper in the paper's own order | a taxonomy that flatters the survey and fits nothing |
+
+### 3.4 If it is a paper, do not teach it in its own order
+
+Papers are written to defend a contribution against reviewers: related work, preliminaries, method,
+then twelve pages of evaluation. That order is hostile to a learner. Reorder to §4 every time — the
+paper's Section 3 is usually your slide 5. And strip the authors' framing: say what the work does
+in your own words first, then note where the abstract oversells.
+
+Two arc changes specifically for a paper:
+
+- **The big-idea slide becomes the delta.** Not "here is the clever thing" but "here is what is new
+  *here*, and here is the machinery it inherited". Students habitually credit a whole pipeline to
+  the paper that added one stage to it.
+- **"What it costs" and "what it does not solve" stop being optional.** For a settled mechanism they
+  are good practice. For a paper they are the reason a student should trust your deck over the
+  abstract. Include limits the authors admit *and* limits visible from outside.
+
+### 3.5 Most material is mixed — so mark the seams
+
+A real deck teaches some settled mechanism and some contested claims. The failure is letting them
+wear the same voice, because the student cannot then tell which parts to hold loosely.
+
+Make the difference **visible on the slide**:
+
+> A ciphertext multiplication multiplies the noise of both operands.
+>
+> This system reports 37.3 s for BERT-Base — amortised over 32 batched inputs, on 4×A100
+> <span class="src">[Table VI]</span>.
+
+The first is stated plainly because it is how the mechanism works. The second carries its number,
+its conditions and its source, because it is a measurement someone made once. Same slide, two
+different kinds of truth, and the student can see which is which.
+
+**And "settled" is not "unconditional".** Established results have scope conditions — assumptions,
+parameter ranges, hardware regimes. State them. A mechanism taught without its boundary is the
+thing students later misapply.
+
+### 3.6 The prior question: does this paper deserve a deck at all?
+
+Often the *concept* deserves the teaching and the paper is merely the best case study for it.
+
+- **One deck per paper** is right when the goal is navigating a literature — a reading map, a
+  survey course, a lab's onboarding.
+- **One deck per concept, with two or three papers as evidence**, teaches better for almost
+  everything else. Three paper decks covering one idea leave a student with three stories and no
+  idea; one concept deck with three pieces of evidence leaves them with the idea and a sense of how
+  well it is supported.
+
+Ask which you are building before you write sixty decks of the wrong one.
+
+---
+
+## 4. The shape of a deck
 
 An arc that reliably works. Keep the *order* even when you change the parts — students who move
 between your materials learn the rhythm and stop spending attention on navigation.
@@ -56,15 +147,15 @@ between your materials learn the rhythm and stop spending attention on navigatio
 | 1 | **Title** | The subject and **one sentence** on what it is for. Not the abstract's words — yours. |
 | 2 | **The problem, in plain words** | An everyday analogy first, the technical statement second. |
 | 3 | **What you need to know first** | *Only* what this specific topic needs. Link elsewhere for the rest. A four-line slide is a good slide. |
-| 4 | **The one big idea** | One sentence, one diagram. If they remember one slide, this is it. Resist adding a second idea. |
+| 4 | **The one big idea** | One sentence, one diagram. If they remember one slide, this is it. Resist adding a second idea. For a paper this slide is **the delta** (§3.3); for a field, the axis of disagreement. |
 | 5–8 | **How it works, step by step** | Built up progressively so each piece lands in order. This is the body. |
 | 9 | **A tiny worked example** | Concrete numbers on a toy case. This is where "I followed the words" becomes "I see the mechanism". Never skip it. |
-| 10 | **Hands-on** | The student drives it themselves. See §6. |
+| 10 | **Hands-on** | The student drives it themselves. See §7. |
 | 11 | **What it costs** | Every method pays something — time, accuracy, assumptions, complexity. Name the price. |
 | 12 | **What it does *not* solve** | Honest limits. This slide is why the whole deck is trustworthy. |
 | 13 | **Where it sits** | The map: this idea's place among its neighbours. Keeps a course navigable. |
 | 14 | **Key terms** | Glossary of every term you introduced, one line each. |
-| 15 | **Check yourself** | 2–3 questions with hidden answers. See §9. |
+| 15 | **Check yourself** | 2–3 questions with hidden answers. See §10. |
 | 16 | **Where to go next** | Three or four specific onward paths, each with a reason to take it. |
 
 Slide counts are guidance, not a cage. Split a crowded step slide in two. But keep every numbered
@@ -72,11 +163,11 @@ section present.
 
 ---
 
-## 4. How to explain a hard idea
+## 5. How to explain a hard idea
 
 Six moves, in rough order of power.
 
-### 4.1 Analogy first, technical statement second
+### 5.1 Analogy first, technical statement second
 
 Open with something from ordinary life, then immediately give the precise version. The analogy buys
 you the student's attention and a mental shape to hang details on; the technical statement stops
@@ -91,7 +182,7 @@ the analogy from becoming the belief.
 **Then retire the analogy.** Say where it breaks before a student discovers the gap and distrusts
 everything else. Every analogy is wrong somewhere; the honest move is to name where.
 
-### 4.2 Invent it, break it, fix it
+### 5.2 Invent it, break it, fix it
 
 The strongest structure available for a technical idea, because it makes the real design feel
 *inevitable* instead of arbitrary.
@@ -105,13 +196,13 @@ A student who has watched the simple version fail will never again ask "why is t
 complicated?", because they watched the complication get earned. Compare: presenting the finished
 design and listing its features, which teaches nothing about *why*.
 
-### 4.3 Concrete numbers, small enough to check
+### 5.3 Concrete numbers, small enough to check
 
 Pick values a student can verify with mental arithmetic, then say plainly that the real thing uses
 the same three lines with 15-digit numbers. Toy scale is a pedagogical choice, not a simplification
 you should be embarrassed about — but label it, or you have misled them about the real cost.
 
-### 4.4 Show the reversal
+### 5.4 Show the reversal
 
 Wherever the new setting inverts an intuition the student already has, say so explicitly and put
 the two side by side.
@@ -122,13 +213,13 @@ the two side by side.
 Unstated reversals are where confusion breeds, because the student silently keeps applying the old
 rule and blames themselves when nothing adds up.
 
-### 4.5 Name things after they have been seen
+### 5.5 Name things after they have been seen
 
 Introduce the phenomenon, let the student watch it happen, *then* give it its name. "That growth
 you just watched is called noise, and the point where it ruins the answer is the noise budget."
 Names given first are noise; names given after are handles.
 
-### 4.6 Build up, don't dump
+### 5.6 Build up, don't dump
 
 Reveal a complex slide one piece at a time, in the order you would say them aloud. A diagram with
 nine boxes appearing at once is a wall; the same diagram assembled in four steps is a story. The
@@ -137,9 +228,9 @@ words.
 
 ---
 
-## 5. Visualizations that stick
+## 6. Visualizations that stick
 
-### 5.1 Rules
+### 6.1 Rules
 
 - **One visual, one idea.** Two ideas in a diagram means neither is remembered.
 - **Show state changing, not the final state.** A before/after pair beats a labelled end result. A
@@ -153,7 +244,7 @@ words.
 - **Prefer a drawn diagram to a photo of a whiteboard, and a small table to a big one.** If a table
   has more than about five rows, it is a chart or an appendix.
 
-### 5.2 Fix a colour vocabulary and never break it
+### 6.2 Fix a colour vocabulary and never break it
 
 Decide once, at the start of a course, what each colour *means* — then use it identically in every
 diagram, chart, callout and inline mention. Students stop needing legends.
@@ -170,7 +261,7 @@ Write the choice into a shared stylesheet so it cannot drift. And never encode m
 *alone* — pair it with a label, a shape or a position, so the material still works for a colourblind
 student and in a bad projector.
 
-### 5.3 Things worth drawing that people usually write instead
+### 6.3 Things worth drawing that people usually write instead
 
 - A **budget draining** (time, memory, depth, error tolerance) as a bar, not a number.
 - A **conversation between parties** as arrows over time, not a paragraph about rounds.
@@ -181,19 +272,19 @@ student and in a bad projector.
 
 ---
 
-## 6. Interactivity
+## 7. Interactivity
 
 An interactive widget is not decoration; it is the fastest known way to convert a rule into an
 intuition. But most are useless. These rules separate the two.
 
-### 6.1 The widget must actually compute
+### 7.1 The widget must actually compute
 
 Never fake it. If the panel shows `b = 59`, it must have calculated 59 from the inputs, and it must
 recalculate when they change. A canned animation that *depicts* a computation teaches a student to
 trust a picture; a real one lets them try the case you didn't think of and get a right answer. It
 also protects you: fake demos drift out of agreement with the text and nobody notices.
 
-### 6.2 Make failure reachable — this is the important one
+### 7.2 Make failure reachable — this is the important one
 
 Every hands-on element should have a setting where **it visibly goes wrong**, and the student
 should be told how to find it.
@@ -205,31 +296,31 @@ output turn wrong and understanding *which* dial did it. Design the parameter ra
 failure boundary sits inside them — and check that it does, because a control that cannot change
 the outcome is a control that teaches nothing.
 
-### 6.3 Budget your controls
+### 7.3 Budget your controls
 
 Two or three controls per widget. Each one should map to exactly one concept the student is meant
 to isolate. A panel with eight sliders is a flight simulator: the student wiggles things at random
 and concludes nothing. If you need more dials, you need another widget.
 
-### 6.4 The default state must already teach
+### 7.4 The default state must already teach
 
 Students who never touch a control should still learn from what is on screen. Open on a meaningful,
 correct, representative case — not on zeros, not on an error state.
 
-### 6.5 Show the working, not just the answer
+### 7.5 Show the working, not just the answer
 
 Print the intermediate line: `b = ⟨a,s⟩ + Δ·m + e = 24 + 16 + 3 = 43`. The answer alone is a magic
 box, which is exactly the thing you are trying to dispel. Seeing the arithmetic recompute as a
 slider moves is where the rule becomes visible.
 
-### 6.6 Immediate, and reversible
+### 7.6 Immediate, and reversible
 
 - Feedback within ~100 ms of the input. Anything slower breaks the cause–effect link.
 - Always a **reset**. A student who has wandered into a confusing state must be able to get home
   without reloading.
 - No dead ends and no lost work: the widget should be robust to every value its controls allow.
 
-### 6.7 Tell them what to try
+### 7.7 Tell them what to try
 
 Beside every interactive element, put one instruction. "Drag the range out and watch both errors
 explode." Left alone, most students click twice and move on. A specific prompt is the difference
@@ -237,7 +328,7 @@ between a widget being used and being decoration.
 
 ---
 
-## 7. Animation
+## 8. Animation
 
 Motion is meaning. Use it for exactly that and nothing else.
 
@@ -254,7 +345,7 @@ Motion is meaning. Use it for exactly that and nothing else.
 
 ---
 
-## 8. Honesty, which is also pedagogy
+## 9. Honesty, which is also pedagogy
 
 Teaching materials get quoted, and students calibrate their standards on them.
 
@@ -268,10 +359,13 @@ Teaching materials get quoted, and students calibrate their standards on them.
 - **Teach the student to read critically.** Show two numbers that look comparable and are not, and
   explain why. Nothing else you do will serve them as long.
 - **When you simplify, say so** — one line, and say what the simplification hides.
+- **Keep claims and settled facts in different voices** (§3.5). A measurement carries its number,
+  its conditions and its source; a mechanism is stated plainly. Blurring the two teaches students to
+  hold everything with the same, wrong, confidence.
 
 ---
 
-## 9. Self-check questions
+## 10. Self-check questions
 
 Two or three at the end, answers hidden until clicked.
 
@@ -286,7 +380,7 @@ Two or three at the end, answers hidden until clicked.
 
 ---
 
-## 10. Slide craft
+## 11. Slide craft
 
 - **A slide is a visual aid, not a document.** Roughly eight lines of text plus one visual is the
   ceiling. Detail that exceeds this belongs in speaker notes or a handout.
@@ -300,7 +394,7 @@ Two or three at the end, answers hidden until clicked.
 
 ---
 
-## 11. Quality gates
+## 12. Quality gates
 
 Do not ship a deck that has not passed these. Automate the ones that can be automated — a check
 that runs is worth ten that are remembered.
@@ -318,6 +412,8 @@ that runs is worth ten that are remembered.
 - [ ] Read every slide aloud as if to the target student. Rewrite anything that stumbles.
 - [ ] Each visual: could a student say what it means without the narration?
 - [ ] Each number: can you point at its source right now?
+- [ ] Claims and settled facts are visibly different on the slide (§3.5), and every established
+      result carries its scope conditions.
 - [ ] Each interactive: can you make it fail, and is the student told how?
 - [ ] Light mode, dark mode, and print.
 - [ ] Hand it to one person from the target audience and watch them use it **without helping**.
@@ -325,11 +421,11 @@ that runs is worth ten that are remembered.
 
 ---
 
-## 12. Consistency across a course
+## 13. Consistency across a course
 
 Individual decks are easy; a coherent course is the hard part.
 
-- **One skeleton**, reused. The arc in §3 should be recognisable in every deck.
+- **One skeleton**, reused. The arc in §4 should be recognisable in every deck.
 - **One component library.** Build the recurring visual once — the budget bar, the party diagram,
   the layout grid — and reuse it. Consistency is cheaper than novelty and teaches better.
 - **One vocabulary.** Keep a glossary for the whole course and use exactly those words. Synonyms
@@ -345,7 +441,7 @@ Individual decks are easy; a coherent course is the hard part.
 
 ---
 
-## 13. Anti-patterns
+## 14. Anti-patterns
 
 | Symptom | Why it fails | Do instead |
 |---|---|---|
@@ -359,30 +455,37 @@ Individual decks are easy; a coherent course is the hard part.
 | A new metaphor for an old idea | Forces re-derivation | Reuse the earlier picture |
 | A cliffhanger with no "next" | Momentum wasted | End with three specific onward paths |
 | Perfect coverage | Everything is covered, nothing lands | Cut to the one idea, link the rest |
+| Teaching a paper in the paper's order | Written to defend, not to teach | Reorder to the arc (§3.4) |
+| A claim stated like a fact | Student cannot tell what to hold loosely | Give measurements their conditions (§3.5) |
 
 ---
 
-## 14. The recipe
+## 15. The recipe
 
 For a new topic, in order:
 
 1. Write the **three answers** from §2. One paragraph total.
-2. Write the **one sentence** the student must remember in six months.
-3. Find the **smallest concrete example** that contains the whole idea. Work it by hand.
-4. Find the **naive version** that fails, and the smallest case that breaks it.
-5. Sketch the **arc** from §3 on paper. One line per slide. Fix the order before writing prose.
-6. Decide the **one visual** for the big idea. If you cannot draw it, you do not understand it yet.
-7. Choose **one or two hands-on moments** and, for each, the specific thing the student should try
+2. **Classify the material** (§3): settled mechanism, a paper's claim, a field, or a practice. If it
+   is a paper, first ask whether the *concept* is the better subject (§3.6).
+3. Write the **one sentence** the student must remember in six months — for a paper, make it the
+   delta.
+4. Find the **smallest concrete example** that contains the whole idea. Work it by hand.
+5. Find the **naive version** that fails, and the smallest case that breaks it. (For a paper: find
+   the limitation the abstract does not mention.)
+6. Sketch the **arc** from §4 on paper. One line per slide. Fix the order before writing prose —
+   never the paper's own order (§3.4).
+7. Decide the **one visual** for the big idea. If you cannot draw it, you do not understand it yet.
+8. Choose **one or two hands-on moments** and, for each, the specific thing the student should try
    and the setting that makes it fail.
-8. Write the slides. Short sentences. Define symbols. Cite numbers.
-9. Write the **limits** slide honestly, and the **self-check** questions.
-10. Build it and run the **automated gates** from §11.
-11. Read every slide aloud. Cut a third of the words.
-12. Watch one real student use it, in silence. Fix what made them pause.
+9. Write the slides. Short sentences. Define symbols. Cite numbers, with their conditions.
+10. Write the **limits** slide honestly, and the **self-check** questions.
+11. Build it and run the **automated gates** from §12.
+12. Read every slide aloud. Cut a third of the words.
+13. Watch one real student use it, in silence. Fix what made them pause.
 
 ---
 
-## 15. Appendix — tooling that makes this cheap
+## 16. Appendix — tooling that makes this cheap
 
 Framework-independent, and worth building once per course:
 
@@ -393,7 +496,7 @@ Framework-independent, and worth building once per course:
   still looks fine. Watch for stale mounted copies of neighbouring slides — target the visible one.
 - **A data-driven index.** Generate the contents page from one machine-readable file listing every
   piece of material, so nothing is hand-maintained and unwritten items can be shown as unwritten.
-- **A shared stylesheet** holding the colour vocabulary from §5.2, so semantics cannot drift
+- **A shared stylesheet** holding the colour vocabulary from §6.2, so semantics cannot drift
   between decks.
 - **A component library** for the recurring visuals, versioned with the material.
 - **Publish from a single command** that runs the build, the gates, and the deploy. A material set
