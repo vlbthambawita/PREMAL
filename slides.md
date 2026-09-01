@@ -85,6 +85,7 @@ description: One slide deck per paper on running transformers under fully homomo
     border: 1px solid var(--border); border-radius: 3px; margin-right: 0.3rem;
     background: var(--bg-soft);
   }
+  .tag.live { border-color: #1a7f37; color: #1a7f37; background: #dafbe1; font-weight: 600; }
   .no-results { display: none; color: var(--muted); font-style: italic; margin: 1.5rem 0; }
   @media (max-width: 560px) { .deck-grid { grid-template-columns: 1fr; } }
 </style>
@@ -103,6 +104,11 @@ the threat model, the results, and what the paper does *not* solve.
     <h4><a href="{{ '/decks/primer-fhe-transformers/' | relative_url }}">Start here — Why transformers are hard to encrypt</a></h4>
     <div class="meta">Primer · 16 slides</div>
     <div class="hook">CKKS, slots, noise, depth, bootstrapping, and the four hard operators. Every other deck assumes this one.</div>
+  </div>
+  <div class="card">
+    <h4><a href="{{ '/decks/fhe-by-hand/' | relative_url }}">Hands-on — FHE by hand</a></h4>
+    <div class="meta">Interactive · 21 slides</div>
+    <div class="hook">Build a homomorphic cipher, break it, then run a small neural network on encrypted inputs. Every box on the slides is live.</div>
   </div>
   <div class="card">
     <h4>Then: the map</h4>
@@ -134,6 +140,7 @@ the threat model, the results, and what the paper does *not* solve.
   <div class="chips" role="group" aria-label="Filter by availability">
     <span class="chip-group-label">Status</span>
     <button class="chip" data-filter="status" data-value="done" aria-pressed="false">Written</button>
+    <button class="chip" data-filter="live" data-value="yes" aria-pressed="false">Interactive</button>
   </div>
 </div>
 
@@ -161,17 +168,18 @@ the threat model, the results, and what the paper does *not* solve.
         {% when 'c' %}<span class="tag">model redesign</span>
         {% when 'm' %}<span class="tag">MPC</span>
       {% endcase %}
+      {% if deck.interactive %}<span class="tag live">interactive</span>{% endif %}
       {% if deck.status == 'done' %}{{ deck.slides }} slides →{% else %}deck not written yet{% endif %}
     </span>
   {% endcapture %}
   {% if deck.status == 'done' %}
   <a class="deck-tile" style="border-left-color:{{ module.colour }}" href="{{ '/decks/' | append: deck.slug | append: '/' | relative_url }}"
      data-search="{{ deck.title | append: ' ' | append: deck.authors | append: ' ' | append: deck.year | append: ' ' | append: deck.hook | downcase | strip_newlines | escape }}"
-     data-strategy="{{ deck.strategy }}" data-status="done">{{ inner }}</a>
+     data-strategy="{{ deck.strategy }}" data-status="done" data-live="{{ deck.interactive | default: false }}">{{ inner }}</a>
   {% else %}
   <div class="deck-tile is-todo" style="border-left-color:{{ module.colour }}"
      data-search="{{ deck.title | append: ' ' | append: deck.authors | append: ' ' | append: deck.year | append: ' ' | append: deck.hook | downcase | strip_newlines | escape }}"
-     data-strategy="{{ deck.strategy }}" data-status="todo">{{ inner }}</div>
+     data-strategy="{{ deck.strategy }}" data-status="todo" data-live="{{ deck.interactive | default: false }}">{{ inner }}</div>
   {% endif %}
 {% endfor %}
 </div>
@@ -202,13 +210,15 @@ the threat model, the results, and what the paper does *not* solve.
       const q = search.value.trim().toLowerCase();
       const strategies = active('strategy');
       const statuses = active('status');
+      const live = active('live');
       let shown = 0;
 
       for (const tile of tiles) {
         const ok =
           (!q || tile.dataset.search.includes(q)) &&
           (strategies.length === 0 || strategies.includes(tile.dataset.strategy)) &&
-          (statuses.length === 0 || statuses.includes(tile.dataset.status));
+          (statuses.length === 0 || statuses.includes(tile.dataset.status)) &&
+          (live.length === 0 || tile.dataset.live === 'true');
         tile.hidden = !ok;
         if (ok) shown++;
       }
@@ -219,7 +229,7 @@ the threat model, the results, and what the paper does *not* solve.
         section.hidden = !any;
       }
 
-      const filtering = q || strategies.length || statuses.length;
+      const filtering = q || strategies.length || statuses.length || live.length;
       count.textContent = filtering
         ? `${shown} deck${shown === 1 ? '' : 's'} match.`
         : count.dataset.original;

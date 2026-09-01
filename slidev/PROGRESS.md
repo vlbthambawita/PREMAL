@@ -1,6 +1,6 @@
 # Deck progress
 
-**7 of 60 decks written.**
+**8 of 61 decks written.**
 
 `_data/decks.yml` is the source of truth for what the `/slides/` page shows. When a deck is
 finished: `python3 slidev/mark-done.py <slug> <slides>` then `python3 slidev/progress.py`.
@@ -10,11 +10,13 @@ finished: `python3 slidev/mark-done.py <slug> <slides>` then `python3 slidev/pro
 - [x] Node installed; Slidev project in `slidev/` with `package-lock.json` committed
 - [x] Shared styles (`src/styles/index.css`) — fixed colour semantics across all decks
 - [x] Shared components: `SlotGrid`, `DepthBar`, `RoundTrip`, `CostBars`
+- [x] Interactive components: `LweDemo`, `RotateSum`, `PolyPlot`, `TinyNet`
+- [x] `interact-check.mjs` — drives the hands-on deck's widgets and checks their arithmetic
 - [x] `DECK_TEMPLATE.md` — the 15-slide skeleton and style guide
 - [x] `build.sh` — per-deck `--base` so decks work under `/PREMAL/`
 - [x] `check.mjs` — headless overflow check of every slide of every deck
 - [x] `.github/workflows/pages.yml` — builds decks + Jekyll, deploys to Pages
-- [x] `_data/decks.yml` — 60 records, drives the tile page
+- [x] `_data/decks.yml` — 61 records, drives the tile page
 - [x] `slides.md` — `/slides/` tile page with search and filter chips
 - [x] "Slides" link in the site nav
 
@@ -27,18 +29,19 @@ Primer → surveys → FHE-native → hybrid → training → medical → system
 
 ## Decks
 
-### Start here — 1/1
+### Start here — 2/2
 
-- [x] `primer-fhe-transformers` — Why transformers are hard to encrypt (PREMAL, 2026) · 16 slides
+- [x] `primer-fhe-transformers` — Why transformers are hard to encrypt (PREMAL, 2026) · 15 slides
+- [x] `fhe-by-hand` — FHE by hand — build the cipher, then run a network in it (PREMAL, 2026) · 21 slides
 
 ### Surveys & where the field stands — 6/6
 
-- [x] `survey-private-transformer-inference-2024` — A Survey on Private Transformer Inference (Li et al., 2024) · 17 slides
-- [x] `sok-approx-he-llm-2026` — SoK: Private LLM Inference using Approximate Homomorphic Encryption (Al Badawi et al., 2026) · 17 slides
-- [x] `ppml-systematic-review-2025` — Towards Efficient Privacy-Preserving Machine Learning — A Systematic Review (Zeng et al., 2025) · 17 slides
-- [x] `pragmatic-crypto-comparison-2026` — A Pragmatic Comparison of Cryptographic Computation Technologies for ML (Taubert et al., 2026) · 17 slides
-- [x] `fhe-vs-garbled-circuits-2025` — Comparison of FHE and Garbled Circuit Techniques in PPML Inference (Cheerla et al., 2025) · 17 slides
-- [x] `shuffling-defense-insecurity-2026` — On the (In-)Security of the Shuffling Defense in Transformer Secure Inference (Li et al., 2026) · 17 slides
+- [x] `survey-private-transformer-inference-2024` — A Survey on Private Transformer Inference (Li et al., 2024) · 16 slides
+- [x] `sok-approx-he-llm-2026` — SoK: Private LLM Inference using Approximate Homomorphic Encryption (Al Badawi et al., 2026) · 16 slides
+- [x] `ppml-systematic-review-2025` — Towards Efficient Privacy-Preserving Machine Learning — A Systematic Review (Zeng et al., 2025) · 16 slides
+- [x] `pragmatic-crypto-comparison-2026` — A Pragmatic Comparison of Cryptographic Computation Technologies for ML (Taubert et al., 2026) · 16 slides
+- [x] `fhe-vs-garbled-circuits-2025` — Comparison of FHE and Garbled Circuit Techniques in PPML Inference (Cheerla et al., 2025) · 16 slides
+- [x] `shuffling-defense-insecurity-2026` — On the (In-)Security of the Shuffling Defense in Transformer Secure Inference (Li et al., 2026) · 16 slides
 
 ### FHE-native, non-interactive inference — 0/12
 
@@ -120,6 +123,7 @@ npx slidev src/nexus-2024.md      # live preview while authoring
 ./build.sh                        # build every deck into ../decks/
 ./build.sh nexus-2024             # build one
 node check.mjs                    # overflow-check every built deck
+node interact-check.mjs           # drive the hands-on deck's widgets
 BASE_PREFIX=/ ./build.sh          # root-served preview instead of /PREMAL/
 ```
 

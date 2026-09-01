@@ -34,6 +34,8 @@ finished: `python3 slidev/mark-done.py <slug> <slides>` then `python3 slidev/pro
 - [x] Node installed; Slidev project in `slidev/` with `package-lock.json` committed
 - [x] Shared styles (`src/styles/index.css`) — fixed colour semantics across all decks
 - [x] Shared components: `SlotGrid`, `DepthBar`, `RoundTrip`, `CostBars`
+- [x] Interactive components: `LweDemo`, `RotateSum`, `PolyPlot`, `TinyNet`
+- [x] `interact-check.mjs` — drives the hands-on deck's widgets and checks their arithmetic
 - [x] `DECK_TEMPLATE.md` — the 15-slide skeleton and style guide
 - [x] `build.sh` — per-deck `--base` so decks work under `/PREMAL/`
 - [x] `check.mjs` — headless overflow check of every slide of every deck
@@ -73,6 +75,7 @@ npx slidev src/nexus-2024.md      # live preview while authoring
 ./build.sh                        # build every deck into ../decks/
 ./build.sh nexus-2024             # build one
 node check.mjs                    # overflow-check every built deck
+node interact-check.mjs           # drive the hands-on deck's widgets
 BASE_PREFIX=/ ./build.sh          # root-served preview instead of /PREMAL/
 ```
 

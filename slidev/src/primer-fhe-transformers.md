@@ -458,6 +458,10 @@ layout: center
 
 <div style="text-align:left; max-width:38rem; margin:0 auto; font-size:0.95rem">
 
+**If you want to see the mechanism, not the map**
+[FHE by hand](../fhe-by-hand/) — build the cipher, break it, then run a small network on
+encrypted inputs. Interactive.
+
 **If you want the map of the whole field**
 [A Survey on Private Transformer Inference (2024)](../survey-private-transformer-inference-2024/) —
 the best taxonomy, then

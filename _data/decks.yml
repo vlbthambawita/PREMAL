@@ -7,6 +7,7 @@
 #   module   key into the `modules` list below (drives colour + filter chips)
 #   status   done   = deck is written and built; the tile links to it
 #            todo   = planned; the tile renders greyed out and is not a link
+#   interactive  present and true when the deck has live widgets to drive
 #   strategy a | b | c | -   the primer's three ways out:
 #            a = approximate everything (FHE-only, non-interactive)
 #            b = split the work (hybrid HE + MPC, interactive)
@@ -51,10 +52,23 @@ decks:
     authors: PREMAL
     year: 2026
     strategy: "-"
-    slides: 16
+    slides: 15
     hook: >-
       The one deck to read first: CKKS, slots, noise, depth, bootstrapping, and the four
       operators that make a transformer hard to run under encryption.
+
+  - slug: fhe-by-hand
+    module: primer
+    status: done
+    title: "FHE by hand — build the cipher, then run a network in it"
+    authors: PREMAL
+    year: 2026
+    strategy: "-"
+    slides: 21
+    interactive: true
+    hook: >-
+      Hands-on. Invent a homomorphic cipher, break it, fix it, then run a small neural
+      network on encrypted inputs — dragging the sliders that make it fail.
 
   # --- Module 1 — Surveys ---------------------------------------------------
   - slug: survey-private-transformer-inference-2024
@@ -64,7 +78,7 @@ decks:
     authors: Li et al.
     year: 2024
     strategy: "-"
-    slides: 17
+    slides: 16
     hook: The clearest taxonomy of the field — who approximates, who splits the work, and why.
   - slug: sok-approx-he-llm-2026
     module: surveys
@@ -73,7 +87,7 @@ decks:
     authors: Al Badawi et al.
     year: 2026
     strategy: "-"
-    slides: 17
+    slides: 16
     hook: The honest scorecard — what encrypted LLM inference can actually do today, and at what cost.
   - slug: ppml-systematic-review-2025
     module: surveys
@@ -82,7 +96,7 @@ decks:
     authors: Zeng et al.
     year: 2025
     strategy: "-"
-    slides: 17
+    slides: 16
     hook: Reviews PPML from three angles at once — protocol, model and system.
   - slug: pragmatic-crypto-comparison-2026
     module: surveys
@@ -91,7 +105,7 @@ decks:
     authors: Taubert et al.
     year: 2026
     strategy: "-"
-    slides: 17
+    slides: 16
     hook: FHE, MPC and trusted hardware measured against each other on the same tasks.
   - slug: fhe-vs-garbled-circuits-2025
     module: surveys
@@ -100,7 +114,7 @@ decks:
     authors: Cheerla et al.
     year: 2025
     strategy: "-"
-    slides: 17
+    slides: 16
     hook: Two very different ways to hide a computation, put side by side.
   - slug: shuffling-defense-insecurity-2026
     module: surveys
@@ -109,7 +123,7 @@ decks:
     authors: Li et al.
     year: 2026
     strategy: "-"
-    slides: 17
+    slides: 16
     hook: A popular cheap "defence" is shown not to defend. Read it before trusting a shortcut.
 
   # --- Module 2 — FHE-native, non-interactive -------------------------------

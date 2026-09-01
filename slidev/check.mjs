@@ -126,18 +126,19 @@ async function main() {
     const bad = []
     let n = 0
     try {
-      // The build exposes no slide count and the URL does not clamp, but an
-      // out-of-range index renders the last slide — so the walk ends when a
-      // slide's content repeats the one before it.
-      let prevKey = null
+      // The build exposes no slide count and the URL does not clamp: an
+      // out-of-range index re-renders a slide that has already been shown. So
+      // the walk ends at the first repeated slide, and that repeat is NOT
+      // counted — otherwise every deck reports one slide too many.
+      const seen = new Set()
       for (let i = 1; i <= MAX_SLIDES; i++) {
         await page.goto(`${deckUrl}/${i}?clicks=999`, { waitUntil: 'networkidle', timeout: 60000 })
         // Mermaid and KaTeX settle after networkidle.
         await page.waitForTimeout(i === 1 ? 1200 : 450)
         const m = await page.evaluate(measure)
         if (!m || m.height === 0) break
-        if (m.key === prevKey) break
-        prevKey = m.key
+        if (seen.has(m.key)) break
+        seen.add(m.key)
         n = i
         if (m.overY > SLACK || m.overX > SLACK) bad.push({ slide: i, ...m })
       }
